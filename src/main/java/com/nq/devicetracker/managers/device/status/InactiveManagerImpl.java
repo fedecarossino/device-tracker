@@ -4,7 +4,9 @@ import com.nq.devicetracker.managers.device.DeviceWorkflowManager;
 import com.nq.devicetracker.model.device.Device;
 import com.nq.devicetracker.model.device.TrackedDevice;
 import com.nq.utils.DateLastConnectionsUtils;
+import org.springframework.stereotype.Component;
 
+@Component
 public class InactiveManagerImpl implements DeviceWorkflowManager {
 
     @Override
@@ -14,4 +16,5 @@ public class InactiveManagerImpl implements DeviceWorkflowManager {
         }
         return device;
     }
+
 }

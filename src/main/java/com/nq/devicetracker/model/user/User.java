@@ -15,6 +15,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name = "email", nullable = false)
+    private String email;
+
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
     private Set<Device> devices = new HashSet<>();
@@ -23,7 +26,8 @@ public class User {
             fetch = FetchType.LAZY)
     private Set<TrackedDevice> trackedDevices = new HashSet<>();
 
-    public User(Set<Device> devices, Set<TrackedDevice> trackedDevices) {
+    public User(String email, Set<Device> devices, Set<TrackedDevice> trackedDevices) {
+        this.email = email;
         this.devices = devices;
         this.trackedDevices = trackedDevices;
     }
@@ -55,4 +59,11 @@ public class User {
         this.trackedDevices = trackedDevices;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
