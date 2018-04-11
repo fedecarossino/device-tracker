@@ -86,15 +86,15 @@ public class DeviceWorkflowManagerImplTest {
     }
 
     private Device getActiveDevice(){
-        return new Device(new User(), Status.ACTIVE);
+        return new Device(0L, new User(), Status.ACTIVE);
     }
 
     private Device getLostDevice(){
-        return new Device(new User(), Status.LOST);
+        return new Device(0L, new User(), Status.LOST);
     }
 
     private Device getInactiveDevice(){
-        return new Device(new User(), Status.INACTIVE);
+        return new Device(0L, new User(), Status.INACTIVE);
     }
 
     private TrackedDevice getActiveTrackedDevice(){

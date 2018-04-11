@@ -2,16 +2,24 @@ package com.nq.devicetracker.model.device;
 
 import com.nq.devicetracker.model.user.User;
 
+import javax.persistence.*;
 import java.sql.Timestamp;
 
+@Entity
+@Table(name = "tracked_device")
 public class TrackedDevice {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
+    @Column(name = "device_id", nullable = false)
     private Long deviceId;
 
+    @Column(name = "last_connection", nullable = false)
     private Timestamp lastConnection;
 
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
     public TrackedDevice(Long deviceId, Timestamp lastConnection, User user) {
