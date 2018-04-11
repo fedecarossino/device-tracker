@@ -19,6 +19,9 @@ public class User {
         this.trackedDevices = trackedDevices;
     }
 
+    public User() {
+    }
+
     public Long getId() {
         return id;
     }

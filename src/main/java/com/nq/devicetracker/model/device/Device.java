@@ -1,5 +1,6 @@
 package com.nq.devicetracker.model.device;
 
+import com.nq.devicetracker.managers.device.status.Status;
 import com.nq.devicetracker.model.user.User;
 
 public class Device {
@@ -8,7 +9,11 @@ public class Device {
 
     private User user;
 
-    private Status status = Status.ACTIVE;
+    private Status status = Status.PENDING;
+
+    public Device(User user) {
+        this.user = user;
+    }
 
     public Device(User user, Status status) {
         this.user = user;
