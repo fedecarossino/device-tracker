@@ -1,6 +1,7 @@
 package com.nq.devicetracker;
 
 import com.nq.devicetracker.quartz.DevicesUpdateJob;
+import com.nq.devicetracker.quartz.EmailsJob;
 import com.nq.devicetracker.services.email.EmailServiceImpl;
 import org.quartz.*;
 import org.springframework.boot.SpringApplication;
@@ -32,6 +33,20 @@ public class DevicetrackerApplication {
 				.withIntervalInSeconds(10).repeatForever();
 
 		return TriggerBuilder.newTrigger().forJob(devicesUpdateJobDetail())
-				.withIdentity("sampleTrigger").withSchedule(scheduleBuilder).build();
+				.withIdentity("devicesUpdateTrigger").withSchedule(scheduleBuilder).build();
+	}
+
+	@Bean
+	public JobDetail sendEmailsJobDetail() {
+		return JobBuilder.newJob(EmailsJob.class).withIdentity("EmailsJobJob").storeDurably().build();
+	}
+
+	@Bean
+	public Trigger sendEmailsJobTrigger() {
+		SimpleScheduleBuilder scheduleBuilder = SimpleScheduleBuilder.simpleSchedule()
+				.withIntervalInSeconds(10).repeatForever();
+
+		return TriggerBuilder.newTrigger().forJob(sendEmailsJobDetail())
+				.withIdentity("emailTrigger").withSchedule(scheduleBuilder).build();
 	}
 }

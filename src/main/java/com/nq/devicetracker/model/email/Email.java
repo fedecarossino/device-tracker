@@ -22,6 +22,9 @@ public class Email {
     @Column(name = "status", nullable = false)
     private EmailStatus status = EmailStatus.PENDING;
 
+    public Email() {
+    }
+
     public Email(Long userId, String subject, String body) {
         this.userId = userId;
         this.subject = subject;
