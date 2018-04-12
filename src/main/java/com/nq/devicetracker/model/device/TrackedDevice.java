@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 public class TrackedDevice {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "device_id", nullable = false)
@@ -21,6 +21,9 @@ public class TrackedDevice {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
+
+    public TrackedDevice() {
+    }
 
     public TrackedDevice(Long deviceId, Timestamp lastConnection, User user) {
         this.deviceId = deviceId;

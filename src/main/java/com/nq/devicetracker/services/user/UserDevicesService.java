@@ -1,48 +1,20 @@
 package com.nq.devicetracker.services.user;
 
-import com.nq.devicetracker.managers.device.DeviceWorkflowManagerImpl;
-import com.nq.devicetracker.managers.device.TrackingManager;
 import com.nq.devicetracker.model.device.Device;
-import com.nq.devicetracker.model.device.TrackedDevice;
 import com.nq.devicetracker.model.user.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class UserDevicesService {
+public interface UserDevicesService {
 
-    @Autowired
-    DeviceWorkflowManagerImpl deviceWorkflowManager;
-    @Autowired
-    TrackingManager trackingManager;
+    void updateDevices();
 
-    @Transactional
-    public void updateDevices() {
-        for (User user : getUsers()) {
-            for (TrackedDevice trackedDevice : trackingManager.getDevices(user)) {
-                Device device = getDevice(user, trackedDevice.getId());
-                Device modifiedDevice = deviceWorkflowManager.manage(device,
-                        trackedDevice);
-                store(modifiedDevice);
-            }
-        }
-    }
+    List<User> getUsers();
 
-    public List<User> getUsers(){
-        //TODO return the users
-        return new ArrayList<User>();
-    }
+    Device getDevice(User user, Long trackId);
 
-    public Device getDevice(User user, Long trackId){
-        //TODO get device for a specific deviceId
-        return null;
-    }
+    void store(Device device);
 
-    public void store(Device device){
-        //TODO save device changes
-    }
 }

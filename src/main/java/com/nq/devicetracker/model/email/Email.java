@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Email {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "user_id", nullable = false)

@@ -23,8 +23,16 @@ public class Device {
     @Enumerated(EnumType.STRING)
     private Status status = Status.PENDING;
 
+    public Device() {
+    }
+
     public Device(User user) {
         this.user = user;
+    }
+
+    public Device(Long deviceId, User user) {
+        this.user = user;
+        this.deviceId = deviceId;
     }
 
     public Device(Long deviceId, User user, Status status) {

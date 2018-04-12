@@ -4,16 +4,17 @@ import com.nq.devicetracker.managers.device.DeviceWorkflowManager;
 import com.nq.devicetracker.model.device.Device;
 import com.nq.devicetracker.model.device.TrackedDevice;
 import com.nq.devicetracker.model.email.Email;
-import com.nq.devicetracker.services.email.EmailService;
+import com.nq.devicetracker.services.email.EmailServiceImpl;
 import com.nq.utils.DateLastConnectionsUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
-public class LostManagerImpl implements DeviceWorkflowManager{
+
+@Service
+public class LostManagerImpl implements DeviceWorkflowManager {
 
     @Autowired
-    EmailService emailService;
+    EmailServiceImpl emailServiceImpl;
 
     @Override
     public Device manage(Device device, TrackedDevice trackedDevice) {
@@ -28,7 +29,7 @@ public class LostManagerImpl implements DeviceWorkflowManager{
 
     private void storeInactiveEmail(Long userId){
         Email email = new Email(userId, "Inactivity", "Inactive email body");
-        emailService.saveEmail(email);
+        emailServiceImpl.saveEmail(email);
     }
 
 }
